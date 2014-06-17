@@ -17,26 +17,17 @@ CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -mmcu=$(MCU)
 #CFLAGS += -Wundef
 
 OBJFLAGS = -j .text -j .data -O ihex
-DUDEFLAGS = -p attiny2313 -c usbasp -P usb -v
+DUDEFLAGS = -p $(MCU) -c usbasp -P usb -v
 
 # Object files for the firmware (usbdrv/oddebug.o not strictly needed I think)
-#OBJECTS = usbdrv/usbdrv.o usbdrv/oddebug.o usbdrv/usbdrvasm.o main.o
 OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o main.o
-#OBJECTS = main.o
-
-# Command-line client
-CMDLINE = usbclient.exe
 
 # By default, build the firmware and command-line client, but do not flash
-all: main.hex $(CMDLINE) sizeafter
+all: main.hex sizeafter
 
 # With this, you can flash the firmware by just typing "make flash" on command-line
 program: main.hex
 	$(DUDE) $(DUDEFLAGS) -U flash:w:$<
-
-# One-liner to compile the command-line client from usbtest.c
-$(CMDLINE): usbclient.c
-	gcc -I ./libusb/include -L ./libusb/lib/gcc -O -Wall usbclient.c -o usbclient.exe -lusb
 
 # Housekeeping if you want it
 clean:
