@@ -3,12 +3,13 @@ thulog
 
 Description: Temperature &amp; Humidity Usb Logger device
 
-* TODO LIST*
+*todo*
 ========
 - [ ] Firmware
      - [ ] setup sleep mode 
      - [ ] setup watchdog to wake up the MCU each 4 seconds and blink the LED
      - [ ] read sensor functionality 
+	 - [ ] rename usb device name and vendor
 - [ ] PCB 
      - [ ] Add Kicad project into pbc folder
      - [ ] schema design
