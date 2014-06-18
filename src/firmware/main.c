@@ -6,8 +6,8 @@
 #include "usbdrv.h"
 #include "util.h"
 
-#define F_CPU 12000000L
 #include <util/delay.h>
+#include "dht.h"
 
 //USB command
 #define USB_LED_OFF	0

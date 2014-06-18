@@ -4,12 +4,13 @@ OBJCOPY = avr-objcopy
 DUDE = avrdude
 MCU=attiny2313
 SIZE = avr-size
+F_CPU = 12000000
 
 
 # If you are not using ATtiny2313 and the USBtiny programmer, 
 # update the lines below to match your configuration
 CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -mmcu=$(MCU)
-#CFLAGS += -funsigned-bitfields
+CFLAGS += -DF_CPU=$(F_CPU)
 #CFLAGS += -fno-inline-small-functions
 #CFLAGS += -ffunction-sections
 #CFLAGS += -fdata-sections 
@@ -17,10 +18,10 @@ CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -mmcu=$(MCU)
 #CFLAGS += -Wundef
 
 OBJFLAGS = -j .text -j .data -O ihex
-DUDEFLAGS = -p $(MCU) -c usbasp -P usb -v
+DUDEFLAGS = -p $(MCU) -c usbasp -P usb -v -D
 
 # Object files for the firmware (usbdrv/oddebug.o not strictly needed I think)
-OBJECTS = usbdrv/usbdrv.o usbdrv/usbdrvasm.o main.o
+OBJECTS = dht.o usbdrv/usbdrv.o usbdrv/usbdrvasm.o main.o
 
 # By default, build the firmware and command-line client, but do not flash
 all: main.hex sizeafter
