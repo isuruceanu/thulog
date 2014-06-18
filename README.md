@@ -9,7 +9,7 @@ Description: Temperature &amp; Humidity Usb Logger device
      - [ ] setup sleep mode 
      - [ ] setup watchdog to wake up the MCU each 4 seconds and blink the LED
      - [ ] read sensor functionality 
-	 - [ ] rename usb device name and vendor
+	 - [x] rename usb device name and vendor
 - [ ] PCB 
      - [ ] Add Kicad project into pbc folder
      - [ ] schema design
