@@ -29,6 +29,8 @@ void system_sleep(void);
 void setup_watchdog(void);
 void blink_led(void);
 
+DHT_DATA_t sensor_data;
+
 
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 {
@@ -46,6 +48,10 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 			//read sensor and fill replayBuf with response
+			DHT_ERROR_t errorCode = readDHT(&sensor_data);
+			
+			
+			
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
 	}
@@ -112,7 +118,7 @@ int main(void)
 	}
 }
 
-ISR(WDT_vect)
+ISR(WDT_OVERFLOW_vect)
 {
   sleep_disable();
   blink_led();

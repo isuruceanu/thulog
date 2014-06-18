@@ -32,7 +32,9 @@ program: main.hex
 
 # Housekeeping if you want it
 clean:
-	$(RM) *.o *.hex *.elf usbdrv/*.o
+	rm.exe *.o *.hex *.elf
+	#$(RM) *.o *.hex *.elf usbdrv/*.o
+	
 
 # From .elf file to .hex
 %.hex: %.elf

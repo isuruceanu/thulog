@@ -31,8 +31,6 @@ typedef struct
 
 DHT_ERROR_t readDHT(DHT_DATA_t* data);
 
-
-
 #endif
 
 
