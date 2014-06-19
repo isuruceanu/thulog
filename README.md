@@ -21,6 +21,15 @@ Description: Temperature &amp; Humidity Usb Logger device based on DHT22 and att
 - [ ] Server side application
 - [ ] Web interface emoji! :sparkles:
 
+
+Repository Contents
+========
+* /docs - usefull documents related to attiny2313, dht22
+* /src -  code folder
+	- /firmare - attiny2313 firmware c code
+	- /server  - server side consumer
+* /hardware - Kicad project for pcb	
+
 License Information
 ========
 
