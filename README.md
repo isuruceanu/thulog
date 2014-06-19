@@ -18,3 +18,8 @@ Description: Temperature &amp; Humidity Usb Logger device
 - [ ] Test console consumer application
 - [ ] Server side application
 - [ ] Web interface emoji! :sparkles:
+
+License Information
+========
+
+License is [beerware](http://en.wikipedia.org/wiki/Beerware)
