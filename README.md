@@ -1,7 +1,9 @@
 thulog
 ======
 
-Description: Temperature &amp; Humidity Usb Logger device
+Description: Temperature &amp; Humidity Usb Logger device based on DHT22 and attiny2313 mcu
+
+
 
 *todo*
 ========
