@@ -21,20 +21,17 @@
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-static uchar replyBuf[16];
+static uchar replyBuf[5];
 
 
 void setup(void);
-void system_sleep(void);
 void setup_watchdog(void);
 void blink_led(void);
-
-DHT_DATA_t sensor_data;
-
 
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 {
 	usbRequest_t *rq = (void *)data; // custom command is in bRequest field
+	DHT_ERROR_t errorCode;
 		
 	switch(rq->bRequest)
 	{
@@ -47,13 +44,17 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 			return 0;
 		
 		case USB_READ:
-			//read sensor and fill replayBuf with response
-			DHT_ERROR_t errorCode = readDHT(&sensor_data);
-			
-			
+		{
+			errorCode = readDHT(&replyBuf);
+
+			if (errorCode)
+			{
+
+			}
 			
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
+		}
 	}
 	return 0;
 }
@@ -79,17 +80,6 @@ int main(void)
 {
 	setup();
 
-
-	sbi(PORT_LED, PIN_LED);
-	_delay_ms(500);
-	cbi(PORT_LED, PIN_LED);
-	_delay_ms(500);
-	sbi(PORT_LED, PIN_LED);
-	_delay_ms(500);
-	cbi(PORT_LED, PIN_LED);
-	_delay_ms(500);
-
-
 	cli();
 	
 	usbInit();
@@ -111,10 +101,7 @@ int main(void)
 		wdt_reset();
 		usbPoll();
 		
-		if (MCUCR & _BV(SE))
-		{
-			sleep_mode();
-		}
+		
 	}
 }
 

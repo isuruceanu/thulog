@@ -11,6 +11,7 @@ F_CPU = 12000000
 # update the lines below to match your configuration
 CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -mmcu=$(MCU)
 CFLAGS += -DF_CPU=$(F_CPU)
+#CFLAGS += -fwhole-program
 #CFLAGS += -fno-inline-small-functions
 #CFLAGS += -ffunction-sections
 #CFLAGS += -fdata-sections 
@@ -32,7 +33,6 @@ program: main.hex
 
 # Housekeeping if you want it
 clean:
-	rm.exe *.o *.hex *.elf
 	#$(RM) *.o *.hex *.elf usbdrv/*.o
 	
 

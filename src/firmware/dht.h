@@ -21,15 +21,8 @@ typedef enum
 
 } DHT_ERROR_t;
 
-typedef struct
-{
-	signed char temperature_integral;
-	unsigned char temperature_decimal;
-	unsigned char humidity_integral;
-	unsigned char humidity_decimal; 
-} DHT_DATA_t;
 
-DHT_ERROR_t readDHT(DHT_DATA_t* data);
+DHT_ERROR_t readDHT(unsigned char* dht_data);
 
 #endif
 

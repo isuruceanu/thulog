@@ -6,13 +6,11 @@
 unsigned char checkForError(unsigned char timeout);
 
 
-DHT_ERROR_t readDHT(DHT_DATA_t* data)
+DHT_ERROR_t readDHT(unsigned char *dht_data)
 {
-	uint8_t retryCount = 0;
-	uint8_t i;
-	uint8_t checkSum = 0;
-	uint16_t rawHumidity = 0;
-    uint16_t rawTemperature = 0;
+	unsigned char retryCount = 0;
+	unsigned char i, j;
+	
 
 	cli(); //disable interrupts
 	cbi(DHT_DDR, DHT_BIT); //set pin as input
@@ -58,7 +56,7 @@ DHT_ERROR_t readDHT(DHT_DATA_t* data)
 		
      // Here sensor pulled down to start transmitting bits.
 	 // Read the 40 bit data stream
-	 for(i =0; i < DHT_DATA_BIT_COUNT; i++)
+	 for(j =0; j < 5; j++)
 	 {
 		//Find the start of the sync pulse
 		if(checkForError(35)) // Spec is 50 us, 35*2 = 70
@@ -81,18 +79,10 @@ DHT_ERROR_t readDHT(DHT_DATA_t* data)
 		// Identify bit values
 		if(retryCount > 20) //Bit is 1: 20*2 = 40us 
 		{
-			if (i < 16) //Humidity
+			dht_data[j]=0;
+			for(i=0; i < 8; i++)
 			{
-				rawHumidity |= (1 << (15 -i));
-			}	
-			if((i > 15) && (i < 32)) // temperature
-			{
-				rawTemperature |= (1 << (31 - i));
-			}
-			
-			if((i > 31) && (i < 40)) //check sum
-			{
-				checkSum |= (1<< (39-i));
+				dht_data[j] |= 1 << (7 -i);
 			}
 		}
 	 }
@@ -103,24 +93,9 @@ DHT_ERROR_t readDHT(DHT_DATA_t* data)
 	 // here threshold is 40 us
 	 
 	 //calculate checksum
-	 if (checkSum == (((rawHumidity >> 8) + (rawHumidity & 0xFF) + 
-			(rawTemperature >> 8) + (rawTemperature & 0xFF)) & 0xFF ))
-	 {
-		// raw data to sensor values
-        data->humidity_integral = (uint8_t)(rawHumidity / 10);
-        data->humidity_decimal = (uint8_t)(rawHumidity % 10);
+	if (dht_data[4] == dht_data[0] + dht_data[1] + dht_data[2] + dht_data[3])
+	{
 
-        if(rawTemperature & 0x8000)     // Check if temperature is below zero, non standard way of encoding negative numbers!
-        {
-            rawTemperature &= 0x7FFF; // Remove signal bit
-            data->temperature_integral = (int8_t)(rawTemperature / 10) * -1;
-            data->temperature_decimal = (uint8_t)(rawTemperature % 10);
-        } 
-		else
-        {
-			data->temperature_integral = (int8_t)(rawTemperature / 10);
-            data->temperature_decimal = (uint8_t)(rawTemperature % 10);                    
-		}
         return DHT_ERROR_NONE;
 	}
 	return DHT_ERROR_CHECKSUM;
@@ -130,7 +105,7 @@ DHT_ERROR_t readDHT(DHT_DATA_t* data)
 
 unsigned char checkForError(unsigned char timeout)
 {
-	uint8_t retryCount = 0;
+	unsigned char retryCount = 0;
 	do
 	{
 		if(retryCount > timeout) return 1;
