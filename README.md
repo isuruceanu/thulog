@@ -33,6 +33,4 @@ Repository Contents
 License Information
 ========
 
-License is [beerware](http://en.wikipedia.org/wiki/Beerware)
-
-Distributed as-is; no warranty is given.
+License is [beerware](http://en.wikipedia.org/wiki/Beerware). Distributed as-is; no warranty is given.
