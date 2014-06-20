@@ -14,7 +14,7 @@ Description: Temperature &amp; Humidity Usb Logger device based on DHT22 and att
 	 - [x] rename usb device name and vendor
 	 - [ ] commit usb windows and linux drivers in sources
 - [ ] PCB 
-     - [ ] Add Kicad project into pbc folder
+     - [ ] Add Kicad project to /hardware folder
      - [ ] schema design
      - [ ] pcb layout 
 - [ ] Test console consumer application
