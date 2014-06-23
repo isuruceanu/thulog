@@ -9,7 +9,7 @@
 #define F_CPU 12000000L
 
 #include <util/delay.h>
-//#include "dht.h"
+#include "dht.h"
 
 //USB command
 #define USB_LED_OFF	0
@@ -23,7 +23,7 @@
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-static uchar replyBuf[16];
+static uchar replyBuf[5];
 
 
 void setup(void);
@@ -33,7 +33,7 @@ void blink_led(void);
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 {
 	usbRequest_t *rq = (void *)data; // custom command is in bRequest field
-	//DHT_ERROR_t errorCode;
+	DHT_ERROR_t errorCode;
 		
 	switch(rq->bRequest)
 	{
@@ -113,12 +113,8 @@ void setup(void)
 	sbi(DDR_LED, PIN_LED); //set led pin as ouput
 	sbi(PORT_LED, PIN_LED); 
 	
-	_delay_ms(500);
-	cbi(PORT_LED, PIN_LED);
-	_delay_ms(200);
-	sbi(PORT_LED, PIN_LED); 
-	_delay_ms(500);
-		
+	_delay_ms(800);
+			
 	ACSR = (1<<ACD); //Turn off Analog Comparator
 }
 
