@@ -6,8 +6,10 @@
 #include "usbdrv.h"
 #include "util.h"
 
+#define F_CPU 12000000L
+
 #include <util/delay.h>
-#include "dht.h"
+//#include "dht.h"
 
 //USB command
 #define USB_LED_OFF	0
@@ -21,7 +23,7 @@
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-static uchar replyBuf[5];
+static uchar replyBuf[16];
 
 
 void setup(void);
@@ -31,7 +33,7 @@ void blink_led(void);
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 {
 	usbRequest_t *rq = (void *)data; // custom command is in bRequest field
-	DHT_ERROR_t errorCode;
+	//DHT_ERROR_t errorCode;
 		
 	switch(rq->bRequest)
 	{
@@ -45,13 +47,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
-			errorCode = readDHT(&replyBuf);
+			//errorCode = readDHT(&replyBuf);
 
-			if (errorCode)
-			{
-
-			}
-			
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
 		}
@@ -79,7 +76,7 @@ USB_PUBLIC uchar usbFunctionWrite(uchar *data, uchar len)
 int main(void)
 {
 	setup();
-
+	
 	cli();
 	
 	usbInit();
@@ -92,16 +89,14 @@ int main(void)
 	setup_watchdog(); 
 
 	set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
-	sleep_enable();
-	
+		
 	sei();
+	cbi(PORT_LED, PIN_LED);
+	sleep_enable();
 
 	while(1)
 	{
-		wdt_reset();
 		usbPoll();
-		
-		
 	}
 }
 
@@ -109,14 +104,21 @@ ISR(WDT_OVERFLOW_vect)
 {
   sleep_disable();
   blink_led();
+  setup_watchdog();
   sleep_enable();
 }
 
 void setup(void)
 {
 	sbi(DDR_LED, PIN_LED); //set led pin as ouput
-	cbi(PORT_LED, PIN_LED); 
+	sbi(PORT_LED, PIN_LED); 
 	
+	_delay_ms(500);
+	cbi(PORT_LED, PIN_LED);
+	_delay_ms(200);
+	sbi(PORT_LED, PIN_LED); 
+	_delay_ms(500);
+		
 	ACSR = (1<<ACD); //Turn off Analog Comparator
 }
 
@@ -127,13 +129,13 @@ void setup_watchdog()
 	// set up watchdog timer
 	WDTCSR |= (1 << WDCE ) | ( 1 << WDE );
 	WDTCSR |= (1 << WDIE );
-	WDTCSR |= (1 << WDP3) | (1 << WDP0); // timer goes off every 8 seconds
+	WDTCSR |= (1 << WDP3); // timer goes off every 4 seconds
 
 }
 
 void blink_led(void)
 {
 	sbi(PORT_LED, PIN_LED);
-	_delay_ms(100);
+	_delay_ms(200);
 	cbi(PORT_LED, PIN_LED);
 }
