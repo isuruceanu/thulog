@@ -4,7 +4,7 @@
 #define DHT_PORT	PORTB
 #define DHT_DDR		DDRB
 #define DHT_PIN		PINB
-#define DHT_BIT		4
+#define DHT_BIT		PB4
 
 #define DHT_DATA_BIT_COUNT 40
 

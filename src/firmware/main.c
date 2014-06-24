@@ -92,13 +92,13 @@ int main(void)
 	
 	usbDeviceConnect();
 	
-	setup_watchdog(); 
+	//setup_watchdog(); 
 
-	set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
+	//set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
 		
 	sei();
 	cbi(PORT_LED, PIN_LED);
-	sleep_enable();
+	//sleep_enable();
 
 	while(1)
 	{

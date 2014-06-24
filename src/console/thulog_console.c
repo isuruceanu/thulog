@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <windows.h>
 #include <usb.h>
 
-#define USB_LED_ON 0
-#define USB_LED_OFF 1
+#define USB_LED_OFF 0
+#define USB_LED_ON 1
 #define USB_READ 2
 
 // used to get descriptor strings for device identification 
@@ -127,7 +127,7 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 	
-	handle = usbOpenDevice(0x16C0, "Amdaris", 0x05DC, "thulog");
+	handle = usbOpenDevice(0x16C0, "thulog", 0x05DC, "Amdaris");
 	
 	if(handle == NULL) {
 		fprintf(stderr, "Could not find USB device!\n");

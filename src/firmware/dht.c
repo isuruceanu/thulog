@@ -13,6 +13,7 @@ PUBLIC DHT_ERROR_t readDHT(unsigned char *dht_data)
 	unsigned char retryCount = 0;
 	unsigned char i, j;
 	
+	dht_data[0] = dht_data[1] = dht_data[2] = dht_data[3] = dht_data[4] =0;
 
 	cli(); //disable interrupts
 	cbi(DHT_DDR, DHT_BIT); //set pin as input
