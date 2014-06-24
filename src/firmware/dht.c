@@ -1,12 +1,14 @@
 #include "dht.h"
 #include <avr/interrupt.h>
+
+#define F_CPU 12000000L
 #include <util/delay.h>
 #include "util.h"
 
 unsigned char checkForError(unsigned char timeout);
 
 
-DHT_ERROR_t readDHT(unsigned char *dht_data)
+PUBLIC DHT_ERROR_t readDHT(unsigned char *dht_data)
 {
 	unsigned char retryCount = 0;
 	unsigned char i, j;

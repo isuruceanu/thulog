@@ -23,6 +23,7 @@
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
+static unsigned char dhtBuf[5];
 static uchar replyBuf[5];
 
 
@@ -47,7 +48,12 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
-			//errorCode = readDHT(&replyBuf);
+			errorCode = readDHT(&dhtBuf);
+			replyBuf[0] = errorCode;
+			replyBuf[1] = dhtBuf[0];
+			replyBuf[2] = dhtBuf[1];
+			replyBuf[3] = dhtBuf[2];
+			replyBuf[4] = dhtBuf[3];
 
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);

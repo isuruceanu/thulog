@@ -8,6 +8,9 @@
 
 #define DHT_DATA_BIT_COUNT 40
 
+#ifndef PUBLIC
+#define PUBLIC
+#endif
 
 typedef enum 
 {
@@ -22,7 +25,7 @@ typedef enum
 } DHT_ERROR_t;
 
 
-DHT_ERROR_t readDHT(unsigned char* dht_data);
+PUBLIC DHT_ERROR_t readDHT(unsigned char *dht_data);
 
 #endif
 
