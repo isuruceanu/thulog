@@ -8,7 +8,7 @@
 #define USB_LED_OFF 1
 #define USB_READ 2
 
-/ used to get descriptor strings for device identification 
+// used to get descriptor strings for device identification 
 static int usbGetDescriptorString(usb_dev_handle *dev, int index, int langid, 
                                   char *buf, int buflen) {
     char buffer[256];
@@ -102,11 +102,11 @@ static usb_dev_handle * usbOpenDevice(int vendor, char *vendorName,
 	return NULL;
 }
 
-void ReadFrequency(usb_dev_handle *handle, char* buffer)
+void Read(usb_dev_handle *handle, char* buffer)
 {
 	usb_control_msg(handle, 
             USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
-			USB_OUT, 0, 0, (char *)buffer, sizeof(buffer), 5000);
+			USB_READ, 0, 0, (char *)buffer, sizeof(buffer), 5000);
 	
 	
 		printf("\n === err:%d 1:%d 2:%d 3:%d 4:%d\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[5]);
