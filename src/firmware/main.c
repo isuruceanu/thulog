@@ -48,8 +48,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
-			errorCode = readDHT(&replyBuf);
-			replyBuf[5] = errorCode;
+			errorCode = readDHT(replyBuf);
+			replyBuf[5] = 0x04;
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
 		}

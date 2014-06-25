@@ -102,7 +102,7 @@ static usb_dev_handle * usbOpenDevice(int vendor, char *vendorName,
 	return NULL;
 }
 
-void Read(usb_dev_handle *handle, unsigned char* buffer)
+void Read(usb_dev_handle *handle, unsigned char *buffer)
 {
 	float h, t;
 	int rowH, rowT;
@@ -137,7 +137,7 @@ void Read(usb_dev_handle *handle, unsigned char* buffer)
 int main(int argc, char **argv) {
 	usb_dev_handle *handle = NULL;
     int nBytes = 0;
-    unsigned char buffer[256];
+    unsigned char buffer[6];
 	
 
 	if(argc < 2) {

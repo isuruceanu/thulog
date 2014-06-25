@@ -1,0 +1,8 @@
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\bin\Debug\ThuConsole.exe.config
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\bin\Debug\ThuConsole.exe
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\bin\Debug\ThuConsole.pdb
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\bin\Debug\LibUsbDotNet.dll
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\bin\Debug\LibUsbDotNet.xml
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\obj\Debug\ThuConsole.csprojResolveAssemblyReference.cache
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\obj\Debug\ThuConsole.exe
+C:\projects\electronics\thulog\src\console\c#\Thulog\ThuConsole\obj\Debug\ThuConsole.pdb
