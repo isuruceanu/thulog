@@ -20,12 +20,11 @@
 #define PIN_LED		PIND3
 #define DDR_LED		DDRD
 
-
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-static unsigned char dhtBuf[5];
-static uchar replyBuf[5];
+unsigned char dhtBuf[5];
 
+static uchar replyBuf[5];
 
 void setup(void);
 void setup_watchdog(void);
@@ -34,7 +33,7 @@ void blink_led(void);
 USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 {
 	usbRequest_t *rq = (void *)data; // custom command is in bRequest field
-	DHT_ERROR_t errorCode;
+	DHT_ERROR_t errorCode = 0;
 		
 	switch(rq->bRequest)
 	{
@@ -48,8 +47,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
-			cbi(WDTCSR, WDIE); //disable interrupt mode of the watchdog, in case reader is hang up, reboot the mcu
 			errorCode = readDHT(&dhtBuf);
+			
 			replyBuf[0] = errorCode;
 			replyBuf[1] = dhtBuf[0];
 			replyBuf[2] = dhtBuf[1];
@@ -57,7 +56,6 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 			replyBuf[4] = dhtBuf[3];
 
 			usbMsgPtr = replyBuf;
-			sbi(WDTCSR, WDIE); 
 			return sizeof(replyBuf);
 		}
 	}
@@ -77,28 +75,28 @@ USB_PUBLIC uchar usbFunctionWrite(uchar *data, uchar len)
 
 int main(void)
 {
-	setup();
-	
 	cli();
-	
+	setup();
+	setup_watchdog(); 
 	usbInit();
 	usbDeviceDisconnect(); //enforce re-enumeration
 		
 	_delay_ms(500);
-	
+		
 	usbDeviceConnect();
 	
-	setup_watchdog(); 
-
 	set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
 		
 	sei();
+	
 	cbi(PORT_LED, PIN_LED);
 	sleep_enable();
 
 	while(1)
 	{
 		usbPoll();
+		sbi(WDTCSR, WDIE); 
+		sleep_enable();
 	}
 }
 
@@ -106,15 +104,13 @@ ISR(WDT_OVERFLOW_vect)
 {
   sleep_disable();
   blink_led();
-  setup_watchdog();
-  sleep_enable();
 }
 
 void setup(void)
 {
 	sbi(DDR_LED, PIN_LED); //set led pin as ouput
 	sbi(PORT_LED, PIN_LED); 
-	
+	DHT_PORT = 0x0;
 	ACSR = (1<<ACD); //Turn off Analog Comparator
 }
 
@@ -125,13 +121,13 @@ void setup_watchdog()
 	// set up watchdog timer
 	WDTCSR |= (1 << WDCE ) | ( 1 << WDE );
 	WDTCSR |= (1 << WDIE );
-	WDTCSR |= (1 << WDP3); // timer goes off every 4 seconds
+	WDTCSR |= (1 << WDP2) | (1<< WDP1); // timer goes off every 1 seconds
 
 }
 
 void blink_led(void)
 {
 	sbi(PORT_LED, PIN_LED);
-	_delay_ms(200);
+	_delay_ms(100);
 	cbi(PORT_LED, PIN_LED);
 }

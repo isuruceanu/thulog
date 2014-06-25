@@ -6,8 +6,6 @@
 #define DHT_PIN		PINB
 #define DHT_BIT		PB4
 
-#define DHT_DATA_BIT_COUNT 40
-
 typedef enum 
 {
 	DHT_ERROR_NONE 			= 0,

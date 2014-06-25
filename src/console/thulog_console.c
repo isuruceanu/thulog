@@ -104,7 +104,8 @@ static usb_dev_handle * usbOpenDevice(int vendor, char *vendorName,
 
 void Read(usb_dev_handle *handle, unsigned char* buffer)
 {
-	int h, t;
+	float h, t;
+	int rowH, rowT;
 	usb_control_msg(handle, 
             USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
 			USB_READ, 0, 0, (char *)buffer, sizeof(buffer), 5000);
@@ -120,17 +121,20 @@ void Read(usb_dev_handle *handle, unsigned char* buffer)
 		
 		if (buffer[2] == 0 && (buffer[4] == 0 || buffer[4] == 2)) //dht11 device
 		{
-			t=buffer[3]*10;
-			h=buffer[1]*10;
+			rowT=buffer[3]*10;
+			rowH=buffer[1]*10;
 		}
 		else //dht22
 		{
-			h = buffer[1] * 256 + buffer[2];
-			t = (buffer[3] & 0x7F)* 256 + buffer[4];
-			if (buffer[3] & 0x80)  t *= -1;
+			rowH = buffer[1] * 256 + buffer[2];
+			rowT = (buffer[3] & 0x7F)* 256 + buffer[4];
+			if (buffer[3] & 0x80)  rowT *= -1;
 		}
 		
-		printf("Temperature = %d, hum = %d\n",t, h);
+		h = rowH / 10;
+		t = rowT / 10;
+		
+		printf("Temperature = %f C, hum = %f\n",t, h);
 	
 }
 
@@ -148,7 +152,7 @@ int main(int argc, char **argv) {
 		exit(1);
 	}
 	
-	handle = usbOpenDevice(0x16C0, "thulog", 0x05DC, "Amdaris");
+	handle = usbOpenDevice(0x16C0, "Amdaris", 0x05DC, "thulog");
 	
 	if(handle == NULL) {
 		fprintf(stderr, "Could not find USB device!\n");
