@@ -48,6 +48,7 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
+			cbi(WDTCSR, WDIE); //disable interrupt mode of the watchdog, in case reader is hang up, reboot the mcu
 			errorCode = readDHT(&dhtBuf);
 			replyBuf[0] = errorCode;
 			replyBuf[1] = dhtBuf[0];
@@ -56,6 +57,7 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 			replyBuf[4] = dhtBuf[3];
 
 			usbMsgPtr = replyBuf;
+			sbi(WDTCSR, WDIE); 
 			return sizeof(replyBuf);
 		}
 	}
@@ -72,12 +74,6 @@ USB_PUBLIC uchar usbFunctionWrite(uchar *data, uchar len)
 	return (dataReceived == dataLength);
 }
 
-
-/*
-
-1. from the start mcu is going to sleep. Each 4 seconds its wakeup and toggle the led
-2. if usb request is comming it automaticale wakeups and serve the request 
-*/
 
 int main(void)
 {
