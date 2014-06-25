@@ -22,9 +22,10 @@
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-unsigned char dhtBuf[5];
 
-static uchar replyBuf[5];
+//static unsigned char dhtBuf[5];
+
+static uchar replyBuf[6];
 
 void setup(void);
 void setup_watchdog(void);
@@ -47,14 +48,8 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 		case USB_READ:
 		{
-			errorCode = readDHT(&dhtBuf);
-			
-			replyBuf[0] = errorCode;
-			replyBuf[1] = dhtBuf[0];
-			replyBuf[2] = dhtBuf[1];
-			replyBuf[3] = dhtBuf[2];
-			replyBuf[4] = dhtBuf[3];
-
+			errorCode = readDHT(&replyBuf);
+			replyBuf[5] = errorCode;
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
 		}
@@ -121,7 +116,7 @@ void setup_watchdog()
 	// set up watchdog timer
 	WDTCSR |= (1 << WDCE ) | ( 1 << WDE );
 	WDTCSR |= (1 << WDIE );
-	WDTCSR |= (1 << WDP2) | (1<< WDP1); // timer goes off every 1 seconds
+	WDTCSR |= (1 << WDP3); // timer goes off every 4 seconds
 
 }
 

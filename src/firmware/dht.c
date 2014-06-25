@@ -1,5 +1,5 @@
 #include "dht.h"
-#include <avr/io.h>
+#include <avr/interrupt.h>
 #define F_CPU 12000000L
 #include <util/delay.h>
 #include "util.h"
@@ -23,7 +23,7 @@ DHT_ERROR_t readDHT(unsigned char *dht_data)
 	_delay_us(80);
 	
 	if (!(DHT_PIN&(1<<DHT_BIT))) return DHT_ERROR_ACK_TOO_LONG;
-	
+	cli(); //disable interrupts here
 	while (DHT_PIN&(1<<DHT_BIT));
 	
 	for (j=0; j<5; j++)
@@ -40,7 +40,8 @@ DHT_ERROR_t readDHT(unsigned char *dht_data)
         }
     }
     	
-	if (dht_data[4] == dht_data[0] + dht_data[1] + dht_data[2] + dht_data[3])
+	sei();	
+	if (dht_data[4] == (dht_data[0] + dht_data[1] + dht_data[2] + dht_data[3]) & 0xFF)
 	{
         return DHT_ERROR_NONE;
 	}

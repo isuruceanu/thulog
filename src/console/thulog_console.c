@@ -111,30 +111,26 @@ void Read(usb_dev_handle *handle, unsigned char* buffer)
 			USB_READ, 0, 0, (char *)buffer, sizeof(buffer), 5000);
 	
 	
-		printf("\n === err:%d 1:%d 2:%d 3:%d 4:%d\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]);
+		printf("\n === 0:%d 1:%d 2:%d 3:%d 4:%d 5:%d\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5]);
 		
-		if (buffer[0] != 0) 
+			
+		if (buffer[1] == 0 && (buffer[3] == 0 || buffer[3] == 2)) //dht11 device
 		{
-			printf("Device sent error code %d\n", buffer[0]);
-			return;
-		}
-		
-		if (buffer[2] == 0 && (buffer[4] == 0 || buffer[4] == 2)) //dht11 device
-		{
-			rowT=buffer[3]*10;
-			rowH=buffer[1]*10;
+			rowT=buffer[2]*10;
+			rowH=buffer[0]*10;
 		}
 		else //dht22
 		{
-			rowH = buffer[1] * 256 + buffer[2];
-			rowT = (buffer[3] & 0x7F)* 256 + buffer[4];
-			if (buffer[3] & 0x80)  rowT *= -1;
+			rowH = buffer[0] * 256 + buffer[1];
+			rowT = (buffer[2] & 0x7F)* 256 + buffer[3];
+			if (buffer[2] & 0x80)  rowT *= -1;
 		}
 		
-		h = rowH / 10;
-		t = rowT / 10;
+		h = rowH / 10.0;
+		t = rowT / 10.0;
 		
-		printf("Temperature = %f C, hum = %f\n",t, h);
+		printf("rowT = %d C, rowH = %d\n",rowT, rowH);
+		printf("Temperature = %3.1f C, hum = %3.1f\n",t, h);
 	
 }
 
