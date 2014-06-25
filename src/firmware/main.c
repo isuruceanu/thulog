@@ -92,13 +92,13 @@ int main(void)
 	
 	usbDeviceConnect();
 	
-	//setup_watchdog(); 
+	setup_watchdog(); 
 
-	//set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
+	set_sleep_mode(SLEEP_MODE_IDLE);    // Set Sleep Mode: Power Down
 		
 	sei();
 	cbi(PORT_LED, PIN_LED);
-	//sleep_enable();
+	sleep_enable();
 
 	while(1)
 	{
@@ -119,8 +119,6 @@ void setup(void)
 	sbi(DDR_LED, PIN_LED); //set led pin as ouput
 	sbi(PORT_LED, PIN_LED); 
 	
-	_delay_ms(800);
-			
 	ACSR = (1<<ACD); //Turn off Analog Comparator
 }
 

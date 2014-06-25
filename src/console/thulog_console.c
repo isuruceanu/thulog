@@ -102,21 +102,42 @@ static usb_dev_handle * usbOpenDevice(int vendor, char *vendorName,
 	return NULL;
 }
 
-void Read(usb_dev_handle *handle, char* buffer)
+void Read(usb_dev_handle *handle, unsigned char* buffer)
 {
+	int h, t;
 	usb_control_msg(handle, 
             USB_TYPE_VENDOR | USB_RECIP_DEVICE | USB_ENDPOINT_IN, 
 			USB_READ, 0, 0, (char *)buffer, sizeof(buffer), 5000);
 	
 	
-		printf("\n === err:%d 1:%d 2:%d 3:%d 4:%d\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[5]);
+		printf("\n === err:%d 1:%d 2:%d 3:%d 4:%d\n", buffer[0], buffer[1], buffer[2], buffer[3], buffer[4]);
+		
+		if (buffer[0] != 0) 
+		{
+			printf("Device sent error code %d\n", buffer[0]);
+			return;
+		}
+		
+		if (buffer[2] == 0 && (buffer[4] == 0 || buffer[4] == 2)) //dht11 device
+		{
+			t=buffer[3]*10;
+			h=buffer[1]*10;
+		}
+		else //dht22
+		{
+			h = buffer[1] * 256 + buffer[2];
+			t = (buffer[3] & 0x7F)* 256 + buffer[4];
+			if (buffer[3] & 0x80)  t *= -1;
+		}
+		
+		printf("Temperature = %d, hum = %d\n",t, h);
 	
 }
 
 int main(int argc, char **argv) {
 	usb_dev_handle *handle = NULL;
     int nBytes = 0;
-    char buffer[256];
+    unsigned char buffer[256];
 	
 
 	if(argc < 2) {
@@ -145,7 +166,7 @@ int main(int argc, char **argv) {
 	} 
 		
 	else if(strcmp(argv[1], "read") == 0) {
-		Read(handle, (char*) buffer);
+		Read(handle, buffer);
 	} 
 		
 	if(nBytes < 0)
