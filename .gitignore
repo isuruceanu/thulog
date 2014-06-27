@@ -30,6 +30,6 @@ bin
 obj
 
 #Kicad
-*.kicad_pcb_back
+*.kicad_pcb-back
 $*.sch
 *.bak
