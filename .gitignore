@@ -32,3 +32,4 @@ obj
 #Kicad
 *.kicad_pcb_back
 $*.sch
+*.bak
