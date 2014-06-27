@@ -1,0 +1,115 @@
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 6/27/2014 4:50:09 PM
+
+BeginCmp
+TimeStamp = /53AD6D63;
+Reference = C1;
+ValeurCmp = C;
+IdModule  = SM0402_c;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD70D0;
+Reference = C2;
+ValeurCmp = C;
+IdModule  = SM0402_c;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD7582;
+Reference = C3;
+ValeurCmp = C;
+IdModule  = SM0603_Capa;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD7591;
+Reference = C4;
+ValeurCmp = CP1;
+IdModule  = SM1206POL;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6DAE;
+Reference = D1;
+ValeurCmp = LED;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6DDF;
+Reference = D2;
+ValeurCmp = ZENER;
+IdModule  = SOT23;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6F7F;
+Reference = D3;
+ValeurCmp = ZENER;
+IdModule  = SOT23;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6CF0;
+Reference = IC1;
+ValeurCmp = ATTINY2313A-S;
+IdModule  = tssop-20;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6DBD;
+Reference = K1;
+ValeurCmp = DHT;
+IdModule  = SIL-3;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6D39;
+Reference = P1;
+ValeurCmp = ISP;
+IdModule  = SIL-6;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6D1E;
+Reference = P2;
+ValeurCmp = USB;
+IdModule  = SIL-4;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6ECE;
+Reference = R1;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6E10;
+Reference = R2;
+ValeurCmp = 68;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6E43;
+Reference = R3;
+ValeurCmp = 68;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6FAD;
+Reference = R4;
+ValeurCmp = R;
+IdModule  = SM0805;
+EndCmp
+
+BeginCmp
+TimeStamp = /53AD6D9F;
+Reference = X1;
+ValeurCmp = QUARTZCMS4;
+IdModule  = CONN3_SMD;
+EndCmp
+
+EndListe

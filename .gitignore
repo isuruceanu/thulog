@@ -28,3 +28,7 @@
 _ReSharper.*
 bin
 obj
+
+#Kicad
+*.kicad_pcb_back
+$*.sch
