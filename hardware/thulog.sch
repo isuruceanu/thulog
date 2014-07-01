@@ -29,13 +29,14 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
+LIBS:thulog-cache
 EELAYER 27 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "27 jun 2014"
+Date "1 jul 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -146,23 +147,6 @@ F 3 "~" H 6850 4100 30  0000 C CNN
 $EndComp
 Wire Wire Line
 	6450 4100 6600 4100
-$Comp
-L R R1
-U 1 1 53AD6ECE
-P 6750 4500
-F 0 "R1" V 6830 4500 40  0000 C CNN
-F 1 "R" V 6757 4501 40  0000 C CNN
-F 2 "~" V 6680 4500 30  0000 C CNN
-F 3 "~" H 6750 4500 30  0000 C CNN
-	1    6750 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6450 4200 6750 4200
-Wire Wire Line
-	6750 4200 6750 4250
-Wire Wire Line
-	6750 4750 6750 4900
 Text Label 7000 5700 0    60   ~ 0
 GND
 Text Label 7050 5700 1    60   ~ 0
@@ -172,16 +156,14 @@ GND
 $Comp
 L LED D1
 U 1 1 53AD6DAE
-P 6750 5100
-F 0 "D1" H 6750 5200 50  0000 C CNN
-F 1 "LED" H 6750 5000 50  0000 C CNN
-F 2 "~" H 6750 5100 60  0000 C CNN
-F 3 "~" H 6750 5100 60  0000 C CNN
-	1    6750 5100
-	0    1    1    0   
+P 7250 2750
+F 0 "D1" H 7250 2850 50  0000 C CNN
+F 1 "LED" H 7250 2650 50  0000 C CNN
+F 2 "~" H 7250 2750 60  0000 C CNN
+F 3 "~" H 7250 2750 60  0000 C CNN
+	1    7250 2750
+	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	6750 5300 6750 5400
 Wire Wire Line
 	3200 5400 8150 5400
 Wire Wire Line
@@ -236,7 +218,6 @@ Wire Wire Line
 	8150 3900 7950 3900
 Wire Wire Line
 	5100 4700 5100 5400
-Connection ~ 6750 5400
 Wire Wire Line
 	3750 3400 3450 3400
 Wire Wire Line
@@ -270,7 +251,7 @@ Wire Wire Line
 	3200 4250 3200 5400
 Connection ~ 5100 5400
 Connection ~ 3200 4250
-Text GLabel 6800 3700 0    60   Input ~ 0
+Text GLabel 6900 3200 0    60   Input ~ 0
 GND
 Wire Wire Line
 	6800 3700 7000 3700
@@ -307,7 +288,7 @@ Wire Wire Line
 Connection ~ 5700 2500
 Wire Wire Line
 	6700 2350 6700 2650
-Text GLabel 6900 3200 0    60   Input ~ 0
+Text GLabel 6800 3700 0    60   Input ~ 0
 VCC
 Wire Wire Line
 	7000 3200 6900 3200
@@ -355,4 +336,26 @@ GND
 Wire Wire Line
 	3000 2250 3000 2050
 Connection ~ 3000 2050
+$Comp
+L R R1
+U 1 1 53AD6ECE
+P 6850 3000
+F 0 "R1" V 6930 3000 40  0000 C CNN
+F 1 "R" V 6857 3001 40  0000 C CNN
+F 2 "~" V 6780 3000 30  0000 C CNN
+F 3 "~" H 6850 3000 30  0000 C CNN
+	1    6850 3000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6450 3000 6600 3000
+Wire Wire Line
+	7100 3000 7250 3000
+Wire Wire Line
+	7250 3000 7250 2950
+Wire Wire Line
+	7250 2550 7250 2450
+Wire Wire Line
+	7250 2450 6700 2450
+Connection ~ 6700 2450
 $EndSCHEMATC

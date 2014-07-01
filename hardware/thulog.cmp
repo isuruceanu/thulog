@@ -1,59 +1,59 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 6/27/2014 5:08:39 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/1/2014 1:01:39 PM
 
 BeginCmp
 TimeStamp = /53AD6D63;
 Reference = C1;
 ValeurCmp = C;
-IdModule  = SM0402_c;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD70D0;
 Reference = C2;
 ValeurCmp = C;
-IdModule  = SM0402_c;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD7582;
 Reference = C3;
 ValeurCmp = C;
-IdModule  = SM0603_Capa;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD7591;
 Reference = C4;
 ValeurCmp = CP1;
-IdModule  = SM1206POL;
+IdModule  = C1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6DAE;
 Reference = D1;
 ValeurCmp = LED;
-IdModule  = SM0805;
+IdModule  = LED-3MM;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6DDF;
 Reference = D2;
 ValeurCmp = ZENER;
-IdModule  = SOT23;
+IdModule  = R1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6F7F;
 Reference = D3;
 ValeurCmp = ZENER;
-IdModule  = SOT23;
+IdModule  = R1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6CF0;
 Reference = IC1;
 ValeurCmp = ATTINY2313A-S;
-IdModule  = tssop-20;
+IdModule  = DIP-20__300;
 EndCmp
 
 BeginCmp
@@ -81,35 +81,35 @@ BeginCmp
 TimeStamp = /53AD6ECE;
 Reference = R1;
 ValeurCmp = R;
-IdModule  = SM0805;
+IdModule  = R1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6E10;
 Reference = R2;
 ValeurCmp = 68;
-IdModule  = SM0805;
+IdModule  = R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6E43;
 Reference = R3;
 ValeurCmp = 68;
-IdModule  = SM0805;
+IdModule  = R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6FAD;
 Reference = R4;
 ValeurCmp = R;
-IdModule  = SM0805;
+IdModule  = R1;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6D9F;
 Reference = X1;
 ValeurCmp = QUARTZCMS4;
-IdModule  = SM2512;
+IdModule  = C2;
 EndCmp
 
 EndListe
