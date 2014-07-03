@@ -36,7 +36,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "1 jul 2014"
+Date "3 jul 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -53,17 +53,6 @@ F 1 "ATTINY2313A-S" H 5900 2850 60  0000 C CNN
 F 2 "SO20" H 4100 2850 60  0001 C CNN
 F 3 "" H 5100 3700 60  0000 C CNN
 	1    5100 3700
-	1    0    0    -1  
-$EndComp
-$Comp
-L CONN_4 P2
-U 1 1 53AD6D1E
-P 8500 4050
-F 0 "P2" V 8450 4050 50  0000 C CNN
-F 1 "USB" V 8550 4050 50  0000 C CNN
-F 2 "" H 8500 4050 60  0000 C CNN
-F 3 "" H 8500 4050 60  0000 C CNN
-	1    8500 4050
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -145,8 +134,6 @@ F 3 "~" H 6850 4100 30  0000 C CNN
 	1    6850 4100
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	6450 4100 6600 4100
 Text Label 7000 5700 0    60   ~ 0
 GND
 Text Label 7050 5700 1    60   ~ 0
@@ -156,18 +143,18 @@ GND
 $Comp
 L LED D1
 U 1 1 53AD6DAE
-P 7250 2750
-F 0 "D1" H 7250 2850 50  0000 C CNN
-F 1 "LED" H 7250 2650 50  0000 C CNN
-F 2 "~" H 7250 2750 60  0000 C CNN
-F 3 "~" H 7250 2750 60  0000 C CNN
-	1    7250 2750
-	0    -1   -1   0   
+P 6800 3000
+F 0 "D1" H 6800 3100 50  0000 C CNN
+F 1 "LED" H 6800 2900 50  0000 C CNN
+F 2 "~" H 6800 3000 60  0000 C CNN
+F 3 "~" H 6800 3000 60  0000 C CNN
+	1    6800 3000
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
 	3200 5400 8150 5400
 Wire Wire Line
-	7100 4100 8150 4100
+	7100 4100 8350 4100
 Wire Wire Line
 	7400 4100 7400 4300
 Wire Wire Line
@@ -184,7 +171,7 @@ F 3 "~" H 7650 4500 60  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	7100 4000 8150 4000
+	7100 4000 8400 4000
 Wire Wire Line
 	7650 4000 7650 4300
 Wire Wire Line
@@ -203,8 +190,6 @@ F 3 "~" H 7900 4550 30  0000 C CNN
 $EndComp
 Wire Wire Line
 	7900 4100 7900 4300
-Wire Wire Line
-	8150 5400 8150 4200
 Connection ~ 7650 5400
 Wire Wire Line
 	7900 4800 7900 5400
@@ -212,10 +197,8 @@ Connection ~ 7900 5400
 Connection ~ 7900 4100
 Connection ~ 7400 4100
 Connection ~ 7650 4000
-Text GLabel 7950 3900 0    60   Input ~ 0
+Text GLabel 8600 4550 0    60   Input ~ 0
 VCC
-Wire Wire Line
-	8150 3900 7950 3900
 Wire Wire Line
 	5100 4700 5100 5400
 Wire Wire Line
@@ -339,23 +322,62 @@ Connection ~ 3000 2050
 $Comp
 L R R1
 U 1 1 53AD6ECE
-P 6850 3000
-F 0 "R1" V 6930 3000 40  0000 C CNN
-F 1 "R" V 6857 3001 40  0000 C CNN
-F 2 "~" V 6780 3000 30  0000 C CNN
-F 3 "~" H 6850 3000 30  0000 C CNN
-	1    6850 3000
-	0    -1   -1   0   
+P 7250 2700
+F 0 "R1" V 7330 2700 40  0000 C CNN
+F 1 "R" V 7257 2701 40  0000 C CNN
+F 2 "~" V 7180 2700 30  0000 C CNN
+F 3 "~" H 7250 2700 30  0000 C CNN
+	1    7250 2700
+	-1   0    0    1   
 $EndComp
 Wire Wire Line
 	6450 3000 6600 3000
 Wire Wire Line
-	7100 3000 7250 3000
+	7000 3000 7250 3000
 Wire Wire Line
 	7250 3000 7250 2950
 Wire Wire Line
-	7250 2550 7250 2450
+	6450 4200 6550 4200
 Wire Wire Line
-	7250 2450 6700 2450
-Connection ~ 6700 2450
+	6550 4200 6550 4100
+Wire Wire Line
+	6550 4100 6600 4100
+$Comp
+L CONN_2 P2
+U 1 1 53B556DB
+P 8750 4100
+F 0 "P2" V 8700 4100 40  0000 C CNN
+F 1 "CONN_2" V 8800 4100 40  0000 C CNN
+F 2 "" H 8750 4100 60  0000 C CNN
+F 3 "" H 8750 4100 60  0000 C CNN
+	1    8750 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_2 P3
+U 1 1 53B556E8
+P 9100 4650
+F 0 "P3" V 9050 4650 40  0000 C CNN
+F 1 "CONN_2" V 9150 4650 40  0000 C CNN
+F 2 "" H 9100 4650 60  0000 C CNN
+F 3 "" H 9100 4650 60  0000 C CNN
+	1    9100 4650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8350 4100 8350 4200
+Wire Wire Line
+	8350 4200 8400 4200
+Wire Wire Line
+	8600 4550 8750 4550
+Wire Wire Line
+	8750 4750 8150 4750
+Connection ~ 8150 4750
+Wire Wire Line
+	8150 4750 8150 5400
+Wire Wire Line
+	7250 2450 7250 2400
+Wire Wire Line
+	7250 2400 6700 2400
+Connection ~ 6700 2400
 $EndSCHEMATC
