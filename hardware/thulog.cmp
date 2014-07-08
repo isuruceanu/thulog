@@ -1,4 +1,4 @@
-Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/3/2014 9:45:35 PM
+Cmp-Mod V01 Created by CvPcb (2013-07-07 BZR 4022)-stable date = 7/8/2014 3:25:03 PM
 
 BeginCmp
 TimeStamp = /53AD6D63;
@@ -71,17 +71,10 @@ IdModule  = SIL-6;
 EndCmp
 
 BeginCmp
-TimeStamp = /53B556DB;
+TimeStamp = /53BBE035;
 Reference = P2;
-ValeurCmp = CONN_2;
-IdModule  = SIL-2;
-EndCmp
-
-BeginCmp
-TimeStamp = /53B556E8;
-Reference = P3;
-ValeurCmp = CONN_2;
-IdModule  = SIL-2;
+ValeurCmp = USBmini;
+IdModule  = USB_MINI_B;
 EndCmp
 
 BeginCmp
@@ -95,20 +88,20 @@ BeginCmp
 TimeStamp = /53AD6E10;
 Reference = R2;
 ValeurCmp = 68;
-IdModule  = SM0805;
+IdModule  = R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6E43;
 Reference = R3;
 ValeurCmp = 68;
-IdModule  = SM0805;
+IdModule  = R3;
 EndCmp
 
 BeginCmp
 TimeStamp = /53AD6FAD;
 Reference = R4;
-ValeurCmp = R;
+ValeurCmp = 1K5;
 IdModule  = SM0805;
 EndCmp
 
