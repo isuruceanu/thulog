@@ -36,7 +36,7 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title ""
-Date "8 jul 2014"
+Date "14 jul 2014"
 Rev ""
 Comp ""
 Comment1 ""
@@ -325,22 +325,11 @@ F 3 "~" H 6800 4300 30  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6450 3000 6600 3000
-Wire Wire Line
-	7000 3000 7250 3000
-Wire Wire Line
-	7250 3000 7250 2950
-Wire Wire Line
 	6450 4200 6550 4200
 Wire Wire Line
 	6550 4200 6550 4100
 Wire Wire Line
 	6550 4100 6600 4100
-Wire Wire Line
-	7250 2450 7250 2400
-Wire Wire Line
-	7250 2400 6700 2400
-Connection ~ 6700 2400
 Wire Wire Line
 	7800 3900 8550 3900
 Wire Wire Line

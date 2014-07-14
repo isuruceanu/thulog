@@ -17,13 +17,11 @@
 #define USB_READ	2
 
 #define PORT_LED	PORTD
-#define PIN_LED		PIND3
+#define PIN_LED		PIND5
 #define DDR_LED		DDRD
 
 static uchar dataReceived = 0;
 static uchar dataLength = 0;
-
-//static unsigned char dhtBuf[5];
 
 static uchar replyBuf[6];
 
