@@ -2,14 +2,15 @@
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <avr/sleep.h>
+#include <avr/pgmspace.h>
+#include <util/delay.h>
 
+
+#include "dht.h"
 #include "usbdrv.h"
 #include "util.h"
 
-#define F_CPU 12000000L
 
-#include <util/delay.h>
-#include "dht.h"
 
 //USB command
 #define USB_LED_OFF	0
@@ -25,6 +26,27 @@ static uchar dataLength = 0;
 
 static uchar replyBuf[6];
 
+const PROGMEM char usbHidReportDescriptor[USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH] = { /* USB report descriptor */
+    0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
+    0x09, 0x06,                    // USAGE (Keyboard)
+    0xa1, 0x01,                    // COLLECTION (Application)
+    0x05, 0x07,                    //   USAGE_PAGE (Keyboard)
+    0x19, 0xe0,                    //   USAGE_MINIMUM (Keyboard LeftControl)
+    0x29, 0xe7,                    //   USAGE_MAXIMUM (Keyboard Right GUI)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
+    0x75, 0x01,                    //   REPORT_SIZE (1)
+    0x95, 0x08,                    //   REPORT_COUNT (8)
+    0x81, 0x02,                    //   INPUT (Data,Var,Abs)
+    0x95, 0x01,                    //   REPORT_COUNT (1)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x25, 0x65,                    //   LOGICAL_MAXIMUM (101)
+    0x19, 0x00,                    //   USAGE_MINIMUM (Reserved (no event indicated))
+    0x29, 0x65,                    //   USAGE_MAXIMUM (Keyboard Application)
+    0x81, 0x00,                    //   INPUT (Data,Ary,Abs)
+    0xc0                           // END_COLLECTION
+};
+
 void setup(void);
 void setup_watchdog(void);
 void blink_led(void);
@@ -36,23 +58,31 @@ USB_PUBLIC uchar usbFunctionSetup(uchar data[8])
 		
 	switch(rq->bRequest)
 	{
+	
 		case USB_LED_ON:
 			sbi(PORT_LED, PIN_LED); //turn LED on
 			return 0;
 		
+		/*
 		case USB_LED_OFF:
 			cbi(PORT_LED, PIN_LED); //turn LED off
 			return 0;
+		*/
+		
 		
 		case USB_READ:
 		{
 			errorCode = readDHT(replyBuf);
-			replyBuf[5] = 0x04;
+			replyBuf[5] = errorCode;
 			usbMsgPtr = replyBuf;
 			return sizeof(replyBuf);
 		}
 	}
 	return 0;
+}
+
+void    usbEventResetReady(void)
+{
 }
 
 USB_PUBLIC uchar usbFunctionWrite(uchar *data, uchar len)
@@ -88,6 +118,12 @@ int main(void)
 	while(1)
 	{
 		usbPoll();
+		/*if(usbInterruptIsReady()){ 
+            
+            usbSetInterrupt(reportBuffer, sizeof(reportBuffer));
+            
+        }*/
+		
 		sbi(WDTCSR, WDIE); 
 		sleep_enable();
 	}

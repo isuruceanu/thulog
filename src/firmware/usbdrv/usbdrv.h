@@ -462,7 +462,7 @@ char usbDescriptorConfiguration[];
 
 extern
 #if !(USB_CFG_DESCR_PROPS_HID_REPORT & USB_PROP_IS_RAM)
-PROGMEM
+PROGMEM const
 #endif
 char usbDescriptorHidReport[];
 

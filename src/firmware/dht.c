@@ -1,6 +1,6 @@
 #include "dht.h"
 #include <avr/interrupt.h>
-#define F_CPU 12000000L
+
 #include <util/delay.h>
 #include "util.h"
 

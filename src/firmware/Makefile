@@ -8,7 +8,7 @@ SIZE = avr-size
 
 # If you are not using ATtiny2313 and the USBtiny programmer, 
 # update the lines below to match your configuration
-CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -mmcu=$(MCU)
+CFLAGS = -Wall -Os -funsigned-char -Iusbdrv -I. -mmcu=$(MCU) -DF_CPU=12000000
 #CFLAGS += -funsigned-bitfields
 #CFLAGS += -fno-inline-small-functions
 #CFLAGS += -ffunction-sections
@@ -20,7 +20,7 @@ OBJFLAGS = -j .text -j .data -O ihex
 DUDEFLAGS = -p attiny2313 -c usbasp -P usb -v
 
 # Object files for the firmware (usbdrv/oddebug.o not strictly needed I think)
-OBJECTS = dht.o usbdrv/usbdrv.o usbdrv/usbdrvasm.o main.o
+OBJECTS =usbdrv/usbdrv.o usbdrv/usbdrvasm.o dht.o main.o
 
 
 # Command-line client
@@ -52,7 +52,7 @@ main.elf: $(OBJECTS)
 
 # Without this dependance, .o files will not be recompiled if you change 
 # the config! I spent a few hours debugging because of this...
-$(OBJECTS): usbdrv/usbconfig.h
+$(OBJECTS): usbconfig.h
 
 # From C source to .o object file
 %.o: %.c	
