@@ -20,7 +20,7 @@ OBJFLAGS = -j .text -j .data -O ihex
 DUDEFLAGS = -p attiny2313 -c usbasp -P usb -v
 
 # Object files for the firmware (usbdrv/oddebug.o not strictly needed I think)
-OBJECTS =usbdrv/usbdrv.o usbdrv/usbdrvasm.o dht.o main.o
+OBJECTS =usbdrv/usbdrv.o usbdrv/usbdrvasm.o main.o
 
 
 # Command-line client

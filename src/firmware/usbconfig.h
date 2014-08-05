@@ -26,7 +26,7 @@
  * This may be any bit in the port. Please note that D+ must also be connected
  * to interrupt pin INT0!
  */
-#define USB_CFG_CLOCK_KHZ       12000
+#define USB_CFG_CLOCK_KHZ       (F_CPU/1000)
 /* Clock rate of the AVR in MHz. Legal values are 12000, 16000 or 16500.
  * The 16.5 MHz version of the code requires no crystal, it tolerates +/- 1%
  * deviation from the nominal frequency. All other rates require a precision
@@ -59,13 +59,17 @@
  * default control endpoint 0, an interrupt-in endpoint 1 and an interrupt-in
  * endpoint 3. You must also enable endpoint 1 above.
  */
+ #define USB_CFG_EP3_NUMBER 3
+/* If the so-called endpoint 3 is used, it can now be configured to any other
+* endpoint number (except 0) with this macro. Default if undefined is 3.
+*/
 #define USB_CFG_IMPLEMENT_HALT          0
 /* Define this to 1 if you also want to implement the ENDPOINT_HALT feature
  * for endpoint 1 (interrupt endpoint). Although you may not need this feature,
  * it is required by the standard. We have made it a config option because it
  * bloats the code considerably.
  */
-#define USB_CFG_INTR_POLL_INTERVAL      10
+#define USB_CFG_INTR_POLL_INTERVAL      100
 /* If you compile a version with endpoint 1 (interrupt-in), this is the poll
  * interval. The value is in milliseconds and must not be less than 10 ms for
  * low speed devices.
@@ -74,7 +78,7 @@
 /* Define this to 1 if the device has its own power supply. Set it to 0 if the
  * device is powered from the USB bus.
  */
-#define USB_CFG_MAX_BUS_POWER           50
+#define USB_CFG_MAX_BUS_POWER           250
 /* Set this variable to the maximum USB bus power consumption of your device.
  * The value is in milliamperes. [It will be divided by two since USB
  * communicates power requirements in units of 2 mA.]
@@ -101,14 +105,14 @@
  * usbdrv.h.
  */
 #ifndef __ASSEMBLER__
-extern void usbEventResetReady(void);
+//extern void usbEventResetReady(void);
 #endif
-#define USB_RESET_HOOK(isReset)             if(!isReset){usbEventResetReady();}
+//#define USB_RESET_HOOK(isReset)             if(!isReset){usbEventResetReady();}
 /* This macro is a hook if you need to know when an USB RESET occurs. It has
  * one parameter which distinguishes between the start of RESET state and its
  * end.
  */
-#define USB_CFG_HAVE_MEASURE_FRAME_LENGTH   1
+#define USB_CFG_HAVE_MEASURE_FRAME_LENGTH   0
 /* define this macro to 1 if you want the function usbMeasureFrameLength()
  * compiled in. This function can be used to calibrate the AVR's RC oscillator.
  */
@@ -169,7 +173,7 @@ extern void usbEventResetReady(void);
 /* See USB specification if you want to conform to an existing device class or
  * protocol.
  */
-#define USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH    35  /* total length of report descriptor */
+#define USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH    29  /* total length of report descriptor */
 /* Define this to the length of the HID report descriptor, if you implement
  * an HID device. Otherwise don't define it or define it to 0.
  * Since this template defines a HID device, it must also specify a HID
