@@ -13,19 +13,19 @@
 
 
 //USB command
-#define USB_LED_OFF	0
+#define USB_LED_OFF	2
 #define USB_LED_ON	1
 #define HIDSERIAL_INBUFFER_SIZE 32
 
 
 #define PORT_LED	PORTD
-#define PIN_LED		PIND5
+#define PIN_LED		PIND3
 #define DDR_LED		DDRD
 
 //static uchar dataReceived = 0;
 //static uchar dataLength = 0;
 
-//static uchar replyBuf[6];
+static uchar replyBuf[8];
 
 PROGMEM const char usbHidReportDescriptor[USB_CFG_HID_REPORT_DESCRIPTOR_LENGTH] = {    /* USB report descriptor */
     0x06, 0x00, 0xff,              // USAGE_PAGE (Generic Desktop)
@@ -77,18 +77,21 @@ int main(void)
 		
 	usbDeviceConnect();
 	
+	wdt_enable(WDTO_1S);
+	
 	usbInit();
 		
 	sei();
 
 	while(1)
 	{
+		wdt_reset();
 		usbPoll();
-		/*if(usbInterruptIsReady()){ 
+		if(usbInterruptIsReady()){ 
             
-            usbSetInterrupt(reportBuffer, sizeof(reportBuffer));
+            usbSetInterrupt(replyBuf, sizeof(replyBuf));
             
-        }*/
+        }
 		
 	}
 }
