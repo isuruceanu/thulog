@@ -167,7 +167,7 @@
 #define USB_CFG_DEVICE_SUBCLASS     0
 /* See USB specification if you want to conform to an existing device class.
  */
-#define USB_CFG_INTERFACE_CLASS     3   /* HID */
+#define USB_CFG_INTERFACE_CLASS     3   /* HID  */
 #define USB_CFG_INTERFACE_SUBCLASS  0   /* no boot interface */
 #define USB_CFG_INTERFACE_PROTOCOL  0   /* no protocol */
 /* See USB specification if you want to conform to an existing device class or
