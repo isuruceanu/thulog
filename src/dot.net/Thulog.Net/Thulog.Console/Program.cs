@@ -19,8 +19,7 @@ namespace Thulog.Console
                     System.Console.ReadKey();
                     return;
                 }
-
-
+                
                 for (int i = 0; i < 48; i++)
                 {
                     Thread.Sleep(5000);

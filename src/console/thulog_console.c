@@ -4,9 +4,9 @@
 #include <windows.h>
 #include <usb.h>
 
-#define USB_LED_OFF 0
+#define USB_LED_OFF 2
 #define USB_LED_ON 1
-#define USB_READ 2
+#define USB_READ 3
 
 // used to get descriptor strings for device identification 
 static int usbGetDescriptorString(usb_dev_handle *dev, int index, int langid, 

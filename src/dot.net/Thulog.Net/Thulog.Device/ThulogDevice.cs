@@ -5,8 +5,8 @@ namespace Thulog.Device
 {
     public class ThulogDevice : VusbDevice
     {
-        private const int Vid = 0x4242;
-        private const int Pid = 0xE131;
+        private const int Vid = 0x16C0;
+        private const int Pid = 0x05DC;
 
         public ThulogDevice()
             : base(Vid, Pid)
