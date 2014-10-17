@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Humidity";
+}
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li>
+            @Html.ActionLink("All indicators", "Index")
+        </li>
+        <li>
+            @Html.ActionLink("Temperature", "Temperature")
+        </li>
+        <li class="active">
+            @Html.ActionLink("Humidity", "Humidity")
+        </li>
+    </ul>
+    <h3 class="text-muted">Room indicators</h3>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div id="humidity_chart_div" style="height: 400px; min-width: 310px"></div>
+    </div>
+
+    <div class="footer">
+        <p>
+            &copy; Amdaris 2014.
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/humidityIndicator")
+}

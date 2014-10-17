@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "All indicators";
+    Layout = "_Layout.cshtml";
+}
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li class="active">
+            @Html.Partial("Index")
+        </li>
+        <li>
+            @Html.Partial("Temperature")
+        </li>
+        <li>
+            @Html.Partial("Humidity")
+        </li>
+    </ul>
+    <h3 class="text-muted">Room indicators</h3>
+</div>
+<div class="well">
+    <div class="row show-grid">
+        <table class="table col-md-8">
+            <thead>
+                <tr>
+                    <th>
+                        From:<input id="dpd1" class="span2 search-query" type="text" value="" data-date-format="dd-mm-yyyy">
+                    </th>
+                    <th>
+                        To:<input id="dpd2" class="span2 search-query" type="text" value="" data-date-format="dd-mm-yyyy">
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="col-md-4">
+            <div id="step_radiogruop" class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active btn-sm">
+                    <input type="radio" name="options" id="option1" checked value="Hours">
+                    Hours
+                </label>
+                <label class="btn btn-primary btn-sm">
+                    <input type="radio" name="options" id="option2" value="Day">
+                    Days
+                </label>
+                <label class="btn btn-primary btn-sm">
+                    <input type="radio" name="options" id="option3" value="Months">
+                    Months
+                </label>
+            </div>
+            <button class="btn btn-primary" onclick="getDataByInterval()">Go</button>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-11">
+            <div class="row"><div id="humidity_chart_div" style="min-height: 500px;margin-bottom: 5%"></div></div>
+            <div class="row"><div id="temperature_chart_div" style="min-height: 500px;"></div></div>
+        </div>
+        <div class="col-md-1">
+            <div id="interval_radioGroup" class="btn-group btn-group-vertical" data-toggle="buttons">
+                <label class="btn well " onclick="getLastDataByParam('0', 'Hours')">
+                    <input type="radio" name="interval" checked id="12h">
+                    12h
+                </label>
+                <label class="btn well" onclick="getLastDataByParam('1', 'Hours')">
+                    <input type="radio" name="interval" id="1D">
+                    1D
+                </label>
+                <label class="btn well" onclick="getLastDataByParam('3', 'Days')">
+                    <input type="radio" name="interval" id="1W">
+                    1W
+                </label>
+                <label class="btn well active" onclick="getLastDataByParam('2', 'Days')">
+                    <input type="radio" name="options" id="1M">
+                    1M
+                </label>
+                <label class="btn well" onclick="getLastDataByParam('4', 'Days')">
+                    <input type="radio" name="options" id="1Y">
+                    1Y
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>
+            &copy; Amdaris 2014.
+        </p>
+    </div>
+</div>

@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Console", "Thulog.Console\Thulog.Console.csproj", "{52284810-E931-4049-8680-ED70888B6A95}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Device", "Thulog.Device\Thulog.Device.csproj", "{C89E7E8D-342C-42E6-B8D1-E58A1D92E61D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Service", "Thulog.Service\Thulog.Service.csproj", "{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,10 @@ Global
 		{C89E7E8D-342C-42E6-B8D1-E58A1D92E61D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C89E7E8D-342C-42E6-B8D1-E58A1D92E61D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89E7E8D-342C-42E6-B8D1-E58A1D92E61D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
