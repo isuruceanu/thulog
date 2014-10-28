@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Device", "Thulog.Dev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Service", "Thulog.Service\Thulog.Service.csproj", "{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thulog.Data", "Thulog.Data\Thulog.Data.csproj", "{29CDEC04-2D62-4C2F-9124-16795AB4D2AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7DCB2D2-13C1-41F6-89E4-FDB99460350E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29CDEC04-2D62-4C2F-9124-16795AB4D2AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29CDEC04-2D62-4C2F-9124-16795AB4D2AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29CDEC04-2D62-4C2F-9124-16795AB4D2AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29CDEC04-2D62-4C2F-9124-16795AB4D2AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

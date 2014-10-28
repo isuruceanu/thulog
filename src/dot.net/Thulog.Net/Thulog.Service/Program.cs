@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
 using Nancy.Hosting.Self;
 using Nancy.TinyIoc;
 using Nancy.ViewEngines.Razor;
+using Thulog.Data.Domain;
+using Thulog.Data.Repository;
+using Thulog.Device;
 
 namespace Thulog.Service
 {
@@ -11,37 +13,93 @@ namespace Thulog.Service
     {
         static void Main(string[] args)
         {
-            string uri = "http://localhost:1234";
+            const string uri = "http://localhost:1234";
 
-            Console.WriteLine("Starting Thulog.Service on {0}", uri);
+            Console.Write("Starting Thulog.Service on ");
+            WriteColoredLine(uri, ConsoleColor.DarkGreen);
             
             var config = new HostConfiguration { UrlReservations = { CreateAutomatically = true } };
 
             using (var host = new NancyHost(config, new Uri(uri)))
             {
-                TinyIoCContainer.Current.Register<RazorViewEngine>(); 
-                Task.Run(() => host.Start());
-                
+                TinyIoCContainer.Current.Register<RazorViewEngine>();
+                host.Start();
 
                 Console.WriteLine("Starting Thulog device reader");
+                var timer = new Timer(StartThulogReader, null, 1000, 60000);
 
-                Task.Run(() => StartThulogReader());
+                
+                WriteColoredLine("Type 'exit' or CTRL+C to shutdown!", ConsoleColor.Green);
+                
 
-                Console.WriteLine("Press any key to close!");
+                string cmd = string.Empty;
+                do
+                {
+                    cmd = Console.ReadLine();
 
-                Console.ReadKey();
+                } while (cmd != "exit");
+
+                
+
+                timer.Dispose();
+
+                Console.WriteLine("Shutdown the server");
 
             }
 
         }
         
-        private static void StartThulogReader()
+        private static void StartThulogReader(object state)
         {
-            for (int i = 0; i < 25; i++)
+            var indicatorRepository = new IndicatorRepository("IndicatorDB");
+
+            using (var thulogDevice = new ThulogDevice())
             {
-                Thread.Sleep(2000);
-                Console.WriteLine("Read thulog");
+                if (!thulogDevice.TryConnect())
+                {
+                    WriteColoredLine("Can not connect to Thulog Device, Data is not logged!", ConsoleColor.Red);
+                    return;
+                }
+
+                if (thulogDevice.IsConnected)
+                {
+                    var indicator = ReadData(thulogDevice, 5);
+
+                    if (indicator != null)
+                    {
+                        indicatorRepository.Add(indicator);
+                    }
+                }
             }
+        }
+
+        private static Indicator ReadData(ThulogDevice thulog, int timesToTry)
+        {
+            Tuple<double, double> thulogData = null;
+
+            for (int i = 0; i < timesToTry; i++)
+            {
+                thulogData = thulog.Read();
+
+                if (thulogData != null)
+                {
+                    break;
+                }
+
+                Thread.Sleep(10);
+            }
+
+            return thulogData != null
+                ? new Indicator { Temperature = thulogData.Item1, Humidity = thulogData.Item2 }
+                : null;
+        }
+
+        private static void WriteColoredLine(string src, ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(src);
+            Console.ResetColor();
+
         }
     }
 }

@@ -8,7 +8,8 @@ namespace Thulog.Service
         {
             Get["/"] = _ =>
             {
-                return View["views/Home.cshtml"];
+                //return View["views/Home.cshtml"];
+                return "Hello world";
             };
         }
     }
