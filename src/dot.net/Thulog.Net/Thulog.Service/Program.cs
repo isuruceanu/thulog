@@ -26,7 +26,7 @@ namespace Thulog.Service
                 host.Start();
 
                 Console.WriteLine("Starting Thulog device reader");
-                var timer = new Timer(StartThulogReader, null, 1000, 60000);
+                var timer = new Timer(StartThulogReader, null, 1000, 50000);
 
                 
                 WriteColoredLine("Type 'exit' or CTRL+C to shutdown!", ConsoleColor.Green);

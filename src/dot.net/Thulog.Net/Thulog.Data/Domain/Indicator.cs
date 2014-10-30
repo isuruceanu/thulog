@@ -6,14 +6,14 @@ namespace Thulog.Data.Domain
     {
         public Indicator()
         {
-            Create = DateTimeOffset.Now;
+            Create = DateTime.Now;
             Year = Create.Year;
             Month = Create.Month;
         }
 
-        public long Id { get; set; }
+        public long? Id { get; set; }
 
-        public DateTimeOffset Create { get; private set; }
+        public DateTime Create { get; private set; }
 
         public double Temperature { get; set; }
 
