@@ -1,6 +1,7 @@
 using System;
 using Simple.Data;
 
+
 namespace Thulog.Data.Repository
 {
     public abstract class Repository

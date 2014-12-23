@@ -13,6 +13,10 @@
 #define tbi(sfr, bit) (_SFR_BYTE(sfr) ^= _BV(bit))
 #endif
 
+#ifndef isset
+#define isset(byte, bit) (((byte) & (1UL << (bit))) >> (bit))
+#endif
+
 #define NOP asm("nop");
 
 #endif
