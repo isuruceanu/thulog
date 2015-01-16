@@ -85,20 +85,26 @@ int main(void)
 	sei();
 	
 	cbi(PORT_LED, PIN_LED);
-	sleep_enable();
-
+	
 	while(1)
 	{
 		usbPoll();
 		sbi(WDTCSR, WDIE);
-		sleep_enable();
+
+		// Enter sleep mode
+		sleep_enable(); // Set SE = 1
+		sleep_cpu();    // call 'sleep' command
+		// first instruction after wake up
+		sleep_disable(); // Set SE = 0
+		
+		// execute main job
+		blink_led();
 	}
 }
 
 ISR(WDT_OVERFLOW_vect)
 {
-	sleep_disable();
-	blink_led();
+	//	keep it just to wake up from sleep mode
 }
 
 void setup(void)
